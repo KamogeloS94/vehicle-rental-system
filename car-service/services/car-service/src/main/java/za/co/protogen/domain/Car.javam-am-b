@@ -1,0 +1,27 @@
+package za.co.protogen.domain;
+
+import java.util.List;
+
+public class Car {
+    private String make;
+    private String model;
+    private int year;
+    private String color;
+    private String engine;
+    private Transmission transmission;
+    private FuelType fuelType;
+    private int mileage;
+    private String vin;
+    private double price;
+    private int ownerId;
+    private List<String> features;
+
+    public enum Transmission {
+        MANUAL, AUTOMATIC, CVT
+    }
+
+    public enum FuelType {
+        GASOLINE, DIESEL, ELECTRIC
+    }   
+}
+
