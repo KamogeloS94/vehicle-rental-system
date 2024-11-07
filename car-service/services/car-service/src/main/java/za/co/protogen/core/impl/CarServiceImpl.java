@@ -1,33 +1,42 @@
-// src/main/java/za/co/protogen/core/impl/CarServiceImpl.java
 package za.co.protogen.core.impl;
 
-import za.co.protogen.core.CarService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import za.co.protogen.domain.Car;
-import za.co.protogen.utility.Constant;
+import za.co.protogen.persistence.repository.CarRepository;
+import za.co.protogen.core.CarService;
 
 import java.util.List;
+import java.util.Optional;
 
+@Service
 public class CarServiceImpl implements CarService {
+
+    @Autowired
+    private CarRepository carRepository;
+
     @Override
-    public void addCar(Car car) {
-        Constant.cars.add(car);
+    public Car addCar(Car car) {
+        return carRepository.save(car);  
     }
 
     @Override
-    public void removeCar(String vin) {
-        Constant.cars.removeIf(car -> car.getVin().equals(vin));
+    public void removeCar(Long id) {
+        carRepository.deleteById(id);  
     }
 
     @Override
-    public Car getCarById(String vin) {
-        return Constant.cars.stream()
-                             .filter(car -> car.getVin().equals(vin))
-                             .findFirst()
-                             .orElse(null);
+    public Optional<Car> getCarById(Long id) {
+        return carRepository.findById(id);  
     }
 
     @Override
     public List<Car> getAllCars() {
-        return Constant.cars;
+        return carRepository.findAll();  
+    }
+
+    @Override
+    public Car updateCar(Car car) {
+        return carRepository.save(car); s
     }
 }

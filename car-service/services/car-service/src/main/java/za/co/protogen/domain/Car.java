@@ -1,5 +1,9 @@
 // src/main/java/za/co/protogen/domain/Car.java
 package za.co.protogen.domain;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 
 import java.util.List;
 
@@ -16,6 +20,10 @@ public class Car {
     private double price;
     private int ownerId;
     private List<String> features;
+    private Long id;
+    private String model;
+    private String brand;
+    private int year;
 
     public enum Transmission { MANUAL, AUTOMATIC, CVT }
     public enum FuelType { GASOLINE, DIESEL, ELECTRIC }
